@@ -75,7 +75,3 @@ wss.on('connection', function (ws, req) {
 
     return false;
 })
-
-server.listen(port, () => {
-    console.log("To open up a presentation, open your browser and type in this address: http://localhost:" + port);
-});
