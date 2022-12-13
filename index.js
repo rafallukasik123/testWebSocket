@@ -2,15 +2,13 @@ const path = require('path'); //dostęp do ścieżki aplikacji
 const fs = require('fs');
 const fsExtra = require('fs-extra');
 
-const WebSocket = require('ws');
+const WebSocketServer = require('ws');
 
 
 
 const bodyParser = require('body-parser');
 const express = require('express'),
-    app = express(),
-    port = process.env.PORT || 3000,
-    server = require('http').createServer(app);
+app = express()
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
@@ -20,9 +18,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-const wss = new WebSocket.Server({
-    server
-});
+// Creating a new websocket server
+const wss = new WebSocketServer.Server({ port: 8080 })
 
 var webSockets = {};
 
@@ -72,6 +69,5 @@ wss.on('connection', function (ws, req) {
     })
 
     ws.on('close', function (ev) {})
-
     return false;
 })
