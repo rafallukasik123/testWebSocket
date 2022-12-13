@@ -32,10 +32,10 @@ app.get('*', async function (req, res, next) {
 });
 
 ws.on('connection', function (ws, req) {
-    console.log(req.url);
+    console.info(req.url);
     var type = req.url.substr(1, 3);
     webSockets[type] = ws;
-    console.log("Connected: " + type);
+    console.info("Connected: " + type);
 
     ws.on('message', function (message) {
         let parsedMessage;
@@ -48,11 +48,11 @@ ws.on('connection', function (ws, req) {
 
         switch (parsedMessage.type) {
             case "toService":
-                console.log(parsedMessage);
+                console.info(parsedMessage);
             webSockets['dev'].send(JSON.stringify(parsedMessage));
                 break;
             case "fromDevice":
-                console.log(parsedMessage);
+                console.info(parsedMessage);
                 webSockets['loc'].send(JSON.stringify(parsedMessage));
                     break;
             default:
