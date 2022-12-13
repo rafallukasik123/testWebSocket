@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-const wss = new WebSocket.Server({
+const ws = new WebSocket.Server({
     server
 });
 
@@ -31,7 +31,7 @@ app.get('*', async function (req, res, next) {
     return next();
 });
 
-wss.on('connection', function (ws, req) {
+ws.on('connection', function (ws, req) {
     console.log(req.url);
     var type = req.url.substr(1, 3);
     webSockets[type] = ws;
@@ -75,4 +75,7 @@ wss.on('connection', function (ws, req) {
 
     return false;
 })
-server.listen(port, () => console.info(`Server running on port: ${port}`))
+server.listen(port, () => {
+    console.log(process.env);
+    console.info(`Server running on port: ${port}`);
+} )
