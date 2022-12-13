@@ -76,6 +76,5 @@ ws.on('connection', function (ws, req) {
     return false;
 })
 server.listen(port, () => {
-    console.log(process.env);
-    console.info(`Server running on port: ${port}`);
+  console.info(`Server running on port: ${port}`);
 } )
